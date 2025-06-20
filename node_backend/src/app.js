@@ -58,15 +58,15 @@ app.get('/', (req, res) => {
 io.on('connection',(sockets)=>{
     console.log("New client connected",sockets.id);
 
-    sockets.on('message',async (data)=>{
+    sockets.on('message',async ({roomId,data})=>{
       console.log("Received message:", data);
       const response = await axios.post(`${process.env.SPOILER_API_URL}/spoiler-detection`, data,{
         contentType: 'application/json',
       });
       if(response.data.spoiler>=0.5){
-        io.emit('message',{message:"This message contains a spoiler!"});
+        io.to(roomId).emit('message',{message:"This message contains a spoiler!"});
       }else{
-        io.emit('message',data);
+        io.to(roomId).emit('message',data);
       }
     });
 
@@ -88,7 +88,7 @@ io.on('connection',(sockets)=>{
 
     sockets.on("offer", ({roomId,offer}) => sockets.to(roomId).emit("offer", offer));
     sockets.on("answer", ({roomId,answer}) => sockets.to(roomId).emit("answer", answer));
-    sockets.on("ice-candidate", ({roomId,candidate}) => sockets.to(roomId).emit("ice-candidate", candidate));
+    sockets.on("ice-candidate", ({roomId,candidate}) => sockets.to(roomId).emit("ice-candidate", {candidate}));
 
     sockets.on('disconnect',()=>{
         console.log("Client disconnected",sockets.id);
