@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+.background-image{
+    background: url("../images/landing.png") no-repeat center center fixed;
+    background-size:cover ;
+}

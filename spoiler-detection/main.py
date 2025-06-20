@@ -49,10 +49,9 @@ def detect_spoiler(input:MessageInput):
     summary_embedding = model.encode(summary, convert_to_tensor=True)
     message_embedding = model.encode(message, convert_to_tensor=True)
     similarity = cosine_similarity([summary_embedding], [message_embedding])[0][0]
+    print(f"Similarity between summary and message: {similarity}")
     result = {
-    "related": bool(similarity > 0.3),
-    "spoiler": bool(similarity > 0.5),
-    "similarity_score": round(float(similarity), 3)
+    "spoiler": round(float(similarity), 3),
     }
     return result
 
@@ -61,7 +60,7 @@ def root():
     return {"message": "Welcome to the Movie Spoiler Detection API. Use /summary to get movie summaries and /spoiler-detection to check for spoilers."}
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port = 5500)
+    uvicorn.run(app, host="127.0.0.1", port = 8800)
 
 
 
