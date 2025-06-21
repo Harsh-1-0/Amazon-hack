@@ -38,6 +38,7 @@ def get_movie_summary(movie_name: str):
 
 @app.post("/spoiler-detection")
 def detect_spoiler(input:MessageInput):
+    print("Received input:", input)
     movie_name = input.movie_name
     message = input.message
     if movie_name not in summary_cache:

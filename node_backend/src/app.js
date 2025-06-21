@@ -5,8 +5,13 @@ import dotenv from 'dotenv';
 import {Server} from 'socket.io';
 import swaggerDocs from './swagger.js';
 import axios from 'axios';
+import mongoConfig from "../config/mongodb.js";
 
+
+mongoConfig();
 dotenv.config();
+
+import userRoute from "../routes/userRoute.js";
 
 const port = process.env.PORT || 5500;
 
@@ -29,6 +34,9 @@ app.use(cors({
     credentials: true
 }));
 app.use(express.json());
+
+app.use('/user', userRoute);
+
 
 /**
  * @openapi
@@ -60,6 +68,7 @@ io.on('connection',(sockets)=>{
 
     sockets.on('message',async ({roomId,data})=>{
       console.log("Received message:", data);
+      
       const response = await axios.post(`${process.env.SPOILER_API_URL}/spoiler-detection`, data,{
         contentType: 'application/json',
       });
