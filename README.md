@@ -5,9 +5,9 @@
   
   <p align="center">
     <img src="https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white" alt="scikit-learn"/>
-    <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" alt="TensorFlow"/>
-    <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js"/>
     <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI"/>
+    <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js"/>
+    <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB"/>
     <img src="https://img.shields.io/badge/Hume_AI-00D4AA?style=for-the-badge&logo=ai&logoColor=white" alt="Hume AI"/>
   </p>
   
@@ -26,7 +26,7 @@
 <div align="center">
   <table>
     <tr>
-      <td width="50%">
+      <td width="33%">
         <h3 align="center">🧠 Character Psychology</h3>
         <ul>
           <li>AI-powered archetype analysis</li>
@@ -34,12 +34,20 @@
           <li>Deep narrative understanding</li>
         </ul>
       </td>
-      <td width="50%">
+      <td width="33%">
         <h3 align="center">⏱️ Adaptive Daylist</h3>
         <ul>
           <li>Utilizing Mistral LLM to select relevant daylist based on mood + archetype + time of day</li>
           <li>Voice-activated mood detection</li>
           <li>Multi-modal emotional analysis</li>
+        </ul>
+      </td>
+      <td width="33%">
+        <h3 align="center">🤝 Mix Recommendations</h3>
+        <ul>
+          <li>Dual-user preference analysis</li>
+          <li>Psychological compatibility matching</li>
+          <li>Shared content discovery</li>
         </ul>
       </td>
     </tr>
@@ -59,7 +67,7 @@ The Character Archetype Engine is the psychological core of Flux, analyzing cont
 ├── DeepSeek V3 0324 via OpenRouter: LLM for creative archetype naming and descriptions
 ├── Pandas: Data preprocessing and feature engineering
 ├── NumPy: Numerical computing for model operations
-└── Local JSON: Character archetype metadata and traits storage
+└── MongoDB + JSON: Processed archetype metadata and character traits storage
 ```
 
 ### System Overview: How It Works
@@ -95,7 +103,7 @@ The Adaptive Daylist system is Flux's time-aware recommendation engine that adap
 ├── FastAPI: High-performance API framework for recommendation endpoints
 ├── OpenRouter (Mistral-7B): LLM inference for intelligent content analysis
 ├── Hume AI: Empathic Voice Interface API for mood detection and tone analysis
-├── Local JSON: User preferences and daylist data storage
+├── MongoDB + JSON: User preferences and daylist data storage
 └── Simple Functions: Custom logic for time-based recommendation filtering
 ```
 
@@ -108,6 +116,38 @@ The Adaptive Daylist system is Flux's time-aware recommendation engine that adap
 
 ---
 
+## 🤝 Mix: Hybrid Recommendations for Two
+
+**Mix** is a pioneering feature that analyzes two users' character preferences and creates hybrid recommendations that satisfy both personalities. When you and your partner have different content tastes, Mix finds content appealing to both psychological viewing patterns.
+
+### Technical Implementation
+
+```
+├── DeepSeek V3 0324: Psychological compatibility analysis
+├── OpenRouter (Mistral-7B): Preference bridging and content selection
+├── Weighted Preference Fusion: Advanced algorithm for balancing dual preferences
+├── MongoDB + JSON: Dual-user preference storage and analysis
+└── Similarity Matrix: Cross-reference compatibility mapping
+```
+
+### How Mix Works
+
+1. **Dual Profile Analysis**: Analyzes both users' character archetype preferences and viewing history
+2. **Compatibility Mapping**: Identifies psychological overlaps and complementary patterns between users
+3. **Preference Weighting**: Applies dynamic weighting to balance each user's preferences fairly
+4. **Content Bridge Discovery**: Locates content with character elements appealing to both psychological profiles
+5. **LLM-Powered Selection**: Uses Mistral-7B to curate final selection based on dual-user compatibility
+
+### Key Features
+
+- **Shared Content Discovery**: Finds the psychological middle ground between different viewing preferences
+- **Balanced Satisfaction**: Ensures neither user's preferences consistently dominate recommendations
+- **Relationship-Aware Curation**: Builds shared viewing experiences that strengthen bonds through mutual appreciation
+- **Preference Evolution Tracking**: Learns from joint viewing sessions to improve future recommendations
+- **Companion Mode**: Optional feature that slightly favors the preferences of a designated primary viewer while still ensuring partner satisfaction
+
+---
+
 ## 🎥 Native Watch Party
 
 **Native Watch Party** is a standalone feature that enables users to watch content together in real-time, synchronized across devices, with integrated chat capabilities.
@@ -117,8 +157,8 @@ The Adaptive Daylist system is Flux's time-aware recommendation engine that adap
 ```
 ├── WebRTC: Real-time video synchronization and low-latency streaming
 ├── Socket.io: Instant messaging and event broadcasting
-├── Next.js: Backend signaling and room management
-└── Local JSON: Session and user data storage
+├── Express.js: Backend signaling and room management
+└── MongoDB + JSON: Session and user data storage
 ```
 
 ### Key Features
@@ -139,6 +179,7 @@ The Adaptive Daylist system is Flux's time-aware recommendation engine that adap
       <td align="center"><img src="https://cdn.simpleicons.org/scikitlearn" width="60px"/><br/>scikit-learn</td>
       <td align="center"><img src="https://cdn.simpleicons.org/fastapi" width="60px"/><br/>FastAPI</td>
       <td align="center"><img src="https://cdn.simpleicons.org/nodedotjs" width="60px"/><br/>Node.js</td>
+      <td align="center"><img src="https://cdn.simpleicons.org/mongodb" width="60px"/><br/>MongoDB</td>
       <td align="center"><img src="https://cdn.simpleicons.org/openai" width="60px"/><br/>OpenRouter</td>
       <td align="center"><img src="https://cdn.simpleicons.org/python" width="60px"/><br/>Python</td>
     </tr>
@@ -157,9 +198,10 @@ The Adaptive Daylist system is Flux's time-aware recommendation engine that adap
 
 ### Data & Storage Layer
 ```
-├── Local JSON: Character archetype metadata and user preferences
-├── GridFS: Binary file storage for media files and thumbnails
-└── AES-256 Encryption: Data protection at rest and in transit
+├── MongoDB: Document storage for user data and metadata
+├── JSON Files: Local data storage for development and configuration
+├── GridFS: Media file storage within MongoDB
+└── Local File System: Character datasets and processed results
 ```
 
 ---
@@ -177,7 +219,7 @@ The Adaptive Daylist system is Flux's time-aware recommendation engine that adap
     │               ┌─────────────▼───────────────────────────┐
     │               │        API Gateway & Security           │
     │               │                                         │
-    │               │  Next.js + JWT Auth + OAuth2            │
+    │               │  Express.js + JWT Auth + Firebase       │
     │               │  Rate Limiting + Input Validation       │
     │               └─────────────┬───────────────────────────┘
     │                             │ REST APIs
@@ -190,10 +232,11 @@ The Adaptive Daylist system is Flux's time-aware recommendation engine that adap
     │               │  │ Engine      │  │ FastAPI Service │   │
     │               │  └─────────────┘  └─────────────────┘   │
     │               │                                         │
-    │               │  ┌─────────────────────────────────────┐│
-    │               │  │      Native Watch Party             ││
-    │               │  │    WebRTC + Socket.io Engine        ││
-    │               │  └─────────────────────────────────────┘│
+    │               │  ┌─────────────┐  ┌─────────────────┐   │
+    │               │  │    Mix      │  │  Native Watch   │   │
+    │               │  │ Dual-User   │  │  Party Engine   │   │
+    │               │  │ Recommender │  │                 │   │
+    │               │  └─────────────┘  └─────────────────┘   │
     │               └─────────────┬───────────────────────────┘
     │                             │
     │               ┌─────────────▼───────────────────────────┐
@@ -216,9 +259,9 @@ The Adaptive Daylist system is Flux's time-aware recommendation engine that adap
     │               │        Data & Storage Layer             │
     │               │                                         │
     │               │  ┌─────────────┐  ┌─────────────────┐   │
-    │               │  │ Local JSON  │  │   GridFS        │   │
-    │               │  │ File System │  │  File Storage   │   │
-    │               │  │  Storage    │  │    System       │   │
+    │               │  │  MongoDB    │  │   JSON Files    │   │
+    │               │  │  Document   │  │   Local Data    │   │
+    │               │  │  Storage    │  │   Storage       │   │
     │               │  └─────────────┘  └─────────────────┘   │
     │               └─────────────────────────────────────────┘
     │
@@ -227,93 +270,9 @@ The Adaptive Daylist system is Flux's time-aware recommendation engine that adap
 
 ---
 
-## 🔧 LLM Integration
-
-### DeepSeek V3 0324 Integration
-```python
-# OpenRouter DeepSeek V3 integration for archetype naming
-def generate_archetype_name(keywords, sample_characters):
-    prompt = f"""
-    You are naming character archetypes based on analysis of similar characters.
-    
-    KEYWORDS: {', '.join(keywords)}
-    SAMPLE CHARACTERS: {', '.join(sample_characters)}
-    
-    Based on these keywords and sample characters, generate:
-    1. A concise, evocative archetype name (1-3 words)
-    2. A single-sentence description of this archetype
-    
-    Format your response as strict JSON:
-    {{
-      "archetype_name": "Name Here",
-      "description": "Description here."
-    }}
-    """
-    
-    headers = {
-        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
-        "Content-Type": "application/json"
-    }
-    
-    payload = {
-        "model": "deepseek-ai/deepseek-v3-0324",
-        "messages": [
-            {"role": "user", "content": prompt}
-        ]
-    }
-    
-    response = requests.post(
-        "https://openrouter.ai/api/v1/chat/completions",
-        headers=headers,
-        json=payload
-    )
-    
-    result = response.json()
-    generated_text = result["choices"][0]["message"]["content"]
-    
-    # Parse JSON from the response
-    archetype_data = json.loads(generated_text)
-    return archetype_data
-```
-
-### Mistral-7B Daylist Integration
-```python
-# FastAPI endpoint for Mistral-7B daylist recommendations
-@app.post("/api/v1/daylist/mistral/recommendations")
-async def mistral_daylist_recommendations(request: DaylistRequest):
-    prompt = f"""
-    Generate content recommendations based on:
-    - User Archetype: {request.archetype}
-    - Current Mood: {request.mood}
-    - Time of Day: {request.time_of_day}
-    
-    Select 3-5 pieces of content that match these criteria.
-    """
-    
-    headers = {
-        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
-        "Content-Type": "application/json"
-    }
-    
-    payload = {
-        "model": "mistralai/mistral-7b-instruct",
-        "messages": [
-            {"role": "user", "content": prompt}
-        ]
-    }
-    
-    response = await openrouter_client.post(
-        "https://openrouter.ai/api/v1/chat/completions",
-        headers=headers,
-        json=payload
-    )
-    
-    return response.json()
-```
-
 ### Key Features
-- **Model**: DeepSeek V3 0324 for character archetype naming
-- **Model**: Mistral-7B for intelligent daylist content selection
+- **Model**: DeepSeek V3 0324 for character archetype analysis
+- **Model**: Mistral-7B for dual-user content selection
 - **API**: OpenRouter for scalable LLM inference
 - **Integration**: FastAPI endpoints for real-time processing
 - **Voice**: Hume AI for empathic voice mood detection
@@ -341,9 +300,9 @@ async def mistral_daylist_recommendations(request: DaylistRequest):
         <small>Hume AI Empathic Voice</small>
       </td>
       <td align="center">
-        <h3>🔄</h3>
-        <b>Multi-Modal Fusion</b><br>
-        <small>FastAPI + LLM pipelines</small>
+        <h3>🤝</h3>
+        <b>Mix Algorithm</b><br>
+        <small>Dual-User Preferences</small>
       </td>
     </tr>
   </table>
@@ -431,6 +390,15 @@ GET /api/v1/daylist/openrouter/analyze
 POST /api/v1/daylist/voice/analyze
 ```
 
+### Mix Dual-User Recommendations
+```http
+POST /api/v1/mix/recommendations
+GET /api/v1/mix/compatibility/{user1_id}/{user2_id}
+POST /api/v1/mix/feedback
+GET /api/v1/mix/history/{session_id}
+PUT /api/v1/mix/preferences/{session_id}
+```
+
 ### Native Watch Party
 ```http
 POST /api/v1/watchparty/create
@@ -444,6 +412,7 @@ DELETE /api/v1/watchparty/leave/{room_id}
 ```http
 POST /api/v1/ml/inference/archetype
 POST /api/v1/ml/inference/recommendation
+POST /api/v1/ml/inference/mix
 GET /api/v1/ml/models/status
 PUT /api/v1/ml/models/update
 ```
@@ -464,5 +433,6 @@ PUT /api/v1/ml/models/update
   
   <p>
     <img src="https://img.shields.io/badge/Made_with-❤️-red?style=for-the-badge" alt="Made with Love"/>
+    <img src="https://img.shields.io/badge/Powered_by-AI/ML-00D4AA?style=for-the-badge" alt="Powered by AI/ML"/>
   </p>
 </div>
