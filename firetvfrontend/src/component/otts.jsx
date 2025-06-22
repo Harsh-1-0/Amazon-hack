@@ -27,11 +27,14 @@ export default function Otts() {
             return fluxImages[2]; // Evening
         }else return fluxImages[3]; // Night
     }
+    const handleClick = () => {
+        window.location.href = "/audio_mood";
+    }
     return (
 
         <div className="flex items-center justify-center gap-5">
             
-            <button  className={`p-3 shadow-md cursor-pointer  hover:scale-110 transition-transform duration-200`}>
+            <button onClick={handleClick}  className={`p-3 shadow-md cursor-pointer  hover:scale-110 transition-transform duration-200`}>
                 <Image src={checkTimeFromImage()} alt="Flux"/>
             </button>
             <button className="text-white w-32 h-16  cursor-pointer  hover:scale-110 transition-transform duration-200"> collaborative</button>
