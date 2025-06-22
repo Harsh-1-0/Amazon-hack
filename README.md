@@ -219,7 +219,7 @@ The Adaptive Daylist system is Flux's time-aware recommendation engine that adap
     │               ┌─────────────▼───────────────────────────┐
     │               │        API Gateway & Security           │
     │               │                                         │
-    │               │  Express.js + JWT Auth + OAuth2         │
+    │               │  Express.js + JWT Auth + Firebase       │
     │               │  Rate Limiting + Input Validation       │
     │               └─────────────┬───────────────────────────┘
     │                             │ REST APIs
