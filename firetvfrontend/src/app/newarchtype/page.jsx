@@ -2,12 +2,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function Characters() {
+export default function Archetype() {
     const [allCharacters, setAllCharacters] = useState({});
     const [selectedMovie, setSelectedMovie] = useState("");
     const [search, setSearch] = useState("");
     const [selectedCharacters, setSelectedCharacters] = useState([]);
-
+    const [userFavChar, setUserFavChar] = useState([]);
     useEffect(() => {
         const getAllCharacters = async () => {
             try {
@@ -21,6 +21,28 @@ export default function Characters() {
             }
         };
         getAllCharacters();
+       
+        const getUser = async()=>{
+            const token = localStorage.getItem("jwt_token");
+            try{
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_CHAT_SERVER}/user`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                });
+                if (response.status === 200) {
+                    // Set selected characters from user data
+                    console.log("User data:", response.data.favCharacters);
+                    if (response.data.favCharacters) {
+                        setUserFavChar(response.data.favCharacters);
+                    }
+                }
+            }catch (error) {
+                console.log("Error fetching user:", error);
+            }
+        }
+        getUser();
     }, []);
 
     // Get movie names for dropdown
@@ -35,7 +57,7 @@ export default function Characters() {
 
     // Add character (max 5)
     const addCharacter = (char) => {
-        if (selectedCharacters.length >= 5) return;
+        if (selectedCharacters.length >= 1) return;
         if (!selectedCharacters.some(c => c.character_name === char.character_name && c.movie === selectedMovie)) {
             setSelectedCharacters([...selectedCharacters, { ...char, movie: selectedMovie }]);
         }
@@ -56,26 +78,29 @@ export default function Characters() {
                 return;
             }
             const backendUrl = process.env.NEXT_PUBLIC_ARCHTYPE_API;
-            console.log("Submitting characters:", selectedCharacters);
-            const arr = selectedCharacters.map(char => char.character_name);
+            console.log("Submitting characters:", userFavChar);
+            const arr = [
+                ...selectedCharacters.map(char => char.character_name),
+                ...userFavChar.map(char => char)
+            ];
+            console.log("Combined character names:", arr);
             const media_sources = selectedCharacters.map(char => char.media_type);
             const genre = selectedCharacters.map(char => char.genre);
             const response = await axios.post(`${backendUrl}/user/archetype`, {
                 character_names: arr,
-
             })
             console.log(response.data);
             const today = new Date();
             const formatted = `${String(today.getDate()).padStart(2, '0')}-${String(today.getMonth() + 1).padStart(2, '0')}-${today.getFullYear()}`;
             console.log(formatted);
-            const archetype = {
+            const archetype = [{
                 id:response.data.dominant_archetype_cluster, 
                 name: response.data.archetype_name,
                 description: response.data.description,
                 date: formatted,
-            }
+            }]
             const token = localStorage.getItem("jwt_token");
-            const userResponse = await axios.post(`${process.env.NEXT_PUBLIC_CHAT_SERVER}/user/updateDetails_newUser`, {
+            const userResponse = await axios.post(`${process.env.NEXT_PUBLIC_CHAT_SERVER}/user/updateDetails`, {
                 character_names: arr,
                 archetypes : archetype,
                 media_sources: media_sources,
@@ -187,7 +212,7 @@ export default function Characters() {
                         <div className="flex items-center justify-between mb-6">
                             <h3 className="text-2xl font-bold text-white">Selected Characters</h3>
                             <span className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-4 py-2 rounded-full text-sm font-semibold">
-                                {selectedCharacters.length}/5
+                                {selectedCharacters.length}/1
                             </span>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
