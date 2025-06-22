@@ -117,7 +117,7 @@ The Adaptive Daylist system is Flux's time-aware recommendation engine that adap
 ```
 ├── WebRTC: Real-time video synchronization and low-latency streaming
 ├── Socket.io: Instant messaging and event broadcasting
-├── Express.js: Backend signaling and room management
+├── Next.js: Backend signaling and room management
 └── Local JSON: Session and user data storage
 ```
 
@@ -177,7 +177,7 @@ The Adaptive Daylist system is Flux's time-aware recommendation engine that adap
     │               ┌─────────────▼───────────────────────────┐
     │               │        API Gateway & Security           │
     │               │                                         │
-    │               │  Express.js + JWT Auth + OAuth2         │
+    │               │  Next.js + JWT Auth + OAuth2            │
     │               │  Rate Limiting + Input Validation       │
     │               └─────────────┬───────────────────────────┘
     │                             │ REST APIs
