@@ -29,8 +29,6 @@
         <ul>
           <li>AI-powered archetype analysis</li>
           <li>Personality-driven content matching</li>
-          <li>Moral complexity preference detection</li>
-          <li>Story theme psychological mapping</li>
           <li>Deep narrative understanding</li>
         </ul>
       </td>
@@ -38,10 +36,8 @@
         <h3 align="center">⏱️ Adaptive Daylist</h3>
         <ul>
           <li>Time-aware content suggestions</li>
-          <li>Circadian rhythm optimization</li>
           <li>Voice-activated mood detection</li>
           <li>Multi-modal emotional analysis</li>
-          <li>Hourly recommendation updates</li>
         </ul>
       </td>
     </tr>
@@ -67,8 +63,6 @@ The Character Archetype Engine is the psychological core of Flux, analyzing cont
 - **Archetype Classification**: Identifies content based on propietary archetypes i.e:- Rebel Heartthrob, The Hidden Prodigies, Dark Mentor, Star Presenter, Firebrand Strategist.
 - **Narrative Analysis**: Processes content for moral complexity, empathy levels, and character arcs
 - **Psychological Matching**: Delivers precise recommendations like "Morally complex protagonists in tough moral dilemmas" instead of generic genres.
-- **Personality Profiles**: Creates viewer profiles based on preferred character types and story themes
-- **Custom Transformer Models**: Uses 256-dimensional embeddings for rich character representation
 
 ## ⏱️ Adaptive Daylist Technology
 
@@ -88,10 +82,8 @@ The Adaptive Daylist system is Flux's time-aware recommendation engine that adap
 ### Key Features
 
 - **Time-Sensitive Recommendations**: Adjusts content suggestions based on time of day
-- **Circadian Pattern Recognition**: Analyzes viewing habits across morning, afternoon, evening, and night
 - **Voice-Based Mood Detection**: Processes verbal requests like "Play something uplifting" to infer emotional states
-- **Multi-Modal Fusion**: Combines behavioral, temporal, and emotional data for holistic recommendations
-- **Prophet Forecasting**: Implements custom seasonality components for temporal pattern analysis
+- **Multi-Modal Fusion**: Combines archetypes, temporal, and emotional data for holistic recommendations
 
 ## 🛠️ Technology Stack
 
