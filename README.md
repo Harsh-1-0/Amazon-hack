@@ -51,6 +51,7 @@
 ## 🧠 Character Archetype Engine
 
 The Character Archetype Engine is the psychological core of Flux, analyzing content and user preferences through the lens of character archetypes and narrative structures.
+<img src="./assets/archetypes.png" alt="Team Espanys" width="80%"/>
 
 ### Technical Implementation
 
