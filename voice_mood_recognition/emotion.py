@@ -32,7 +32,7 @@ class MoodDetector:
                 print(f"  {emotion}: {score:.2f}")
             print("-" * 40)
 
-            self._done_event.set()  # Mark as done
+            self._done_event.set()  
 
     async def on_close(self):
         print("WebSocket connection closed.")

@@ -10,14 +10,14 @@ from fastapi.responses import JSONResponse
 from dotenv import load_dotenv
 from voice_mood_recognition.emotion import MoodDetector
 
-# --- CONFIGURATION ---
+#Configuration
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 load_dotenv()
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
-# --- API SETUP ---
+#API setup
 API_BASE_URL = "https://character-iwaf.onrender.com"
 LOCAL_SHOW_CATALOG = []
 
@@ -26,7 +26,7 @@ if not OPENROUTER_API_KEY:
 
 app = FastAPI(title="Smart Daylist API with OpenRouter")
 
-# --- STARTUP EVENT ---
+
 @app.on_event("startup")
 async def startup_event():
     global LOCAL_SHOW_CATALOG
@@ -37,8 +37,7 @@ async def startup_event():
     except Exception as e:
         logger.error(f"FATAL: Could not load local show catalog. Error: {e}")
 
-# --- HELPER FUNCTIONS ---
-# (All helper functions are correct and remain unchanged)
+#Helper functions
 def get_time_of_day():
     h = datetime.datetime.now().hour
     if 5 <= h < 12: return "morning"
@@ -104,7 +103,7 @@ Here is the user and catalog information. Please generate the curated daylist no
         {"role": "user", "content": user_prompt}
     ]
 
-# --- FASTAPI ENDPOINT ---
+#Fastapi endpoint
 @app.post("/daylist", response_class=JSONResponse)
 async def daylist(user_id: str = Form(...)):
     if not OPENROUTER_API_KEY: raise HTTPException(status_code=503, detail="The AI routing service is not configured.")
@@ -134,7 +133,6 @@ async def daylist(user_id: str = Form(...)):
                 "X-Title": "Daylist Curation App", 
             },
             json={
-                # --- THIS IS THE DIAGNOSTIC MODEL NAME ---
                 "model": "mistralai/mistral-7b-instruct:free",
                 "messages": messages,
                 "response_format": {"type": "json_object"}
