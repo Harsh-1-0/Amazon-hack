@@ -7,8 +7,8 @@
     <img src="https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white" alt="scikit-learn"/>
     <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white" alt="TensorFlow"/>
     <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js"/>
-    <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB"/>
     <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI"/>
+    <img src="https://img.shields.io/badge/Hume_AI-00D4AA?style=for-the-badge&logo=ai&logoColor=white" alt="Hume AI"/>
   </p>
   
   <p align="center">
@@ -21,7 +21,7 @@
 
 ## 🌟 Overview
 
-**Flux** is a revolutionary content discovery platform that combines psychological character archetype analysis with time-aware adaptive recommendations. Unlike traditional recommendation engines that rely on generic demographic clustering, Flux leverages deep psychological insights to understand your content preferences on a fundamental level, then adapts throughout the day to match your circadian rhythms and emotional states.
+**Flux** is a revolutionary content discovery platform that combines psychological character archetype analysis with time-aware adaptive recommendations. Unlike traditional recommendation engines that rely on generic demographic clustering, Flux leverages deep psychological insights to understand your content preferences on a fundamental level, then adapts throughout the day to match your emotional states and personal preferences.
 
 <div align="center">
   <table>
@@ -37,7 +37,7 @@
       <td width="50%">
         <h3 align="center">⏱️ Adaptive Daylist</h3>
         <ul>
-          <li>Time-aware content suggestions</li>
+          <li>Utilizing Mistral LLM to select relevant daylist based on mood + archetype + time of day</li>
           <li>Voice-activated mood detection</li>
           <li>Multi-modal emotional analysis</li>
         </ul>
@@ -59,7 +59,7 @@ The Character Archetype Engine is the psychological core of Flux, analyzing cont
 ├── DeepSeek V3 0324 via OpenRouter: LLM for creative archetype naming and descriptions
 ├── Pandas: Data preprocessing and feature engineering
 ├── NumPy: Numerical computing for model operations
-└── MongoDB: Processed archetype metadata and character traits storage
+└── Local JSON: Character archetype metadata and traits storage
 ```
 
 ### System Overview: How It Works
@@ -87,7 +87,7 @@ The Character Archetype Engine is the psychological core of Flux, analyzing cont
 
 ## ⏱️ Adaptive Daylist Technology
 
-The Adaptive Daylist system is Flux's time-aware recommendation engine that adapts to users' circadian viewing patterns and emotional states throughout the day.
+The Adaptive Daylist system is Flux's time-aware recommendation engine that adapts to users' viewing patterns and emotional states throughout the day.
 
 ### Technical Implementation
 
@@ -95,9 +95,8 @@ The Adaptive Daylist system is Flux's time-aware recommendation engine that adap
 ├── FastAPI: High-performance API framework for recommendation endpoints
 ├── OpenRouter (Mistral-7B): LLM inference for intelligent content analysis
 ├── Hume AI: Empathic Voice Interface API for mood detection and tone analysis
-├── scikit-learn: Time-series modeling and circadian behavior analysis
-├── MongoDB (Time-series collections): Engagement metrics by time
-└── Uvicorn: ASGI server for FastAPI deployment
+├── Local JSON: User preferences and daylist data storage
+└── Simple Functions: Custom logic for time-based recommendation filtering
 ```
 
 ### Key Features
@@ -105,6 +104,7 @@ The Adaptive Daylist system is Flux's time-aware recommendation engine that adap
 - **Time-Sensitive Recommendations**: Adjusts content suggestions based on time of day.
 - **Voice-Based Mood Detection**: Processes verbal requests through Hume AI's Empathic Voice Interface to infer emotional states.
 - **Multi-Modal Fusion**: Combines archetypes, temporal, and emotional data for holistic recommendations.
+- **Mistral LLM Integration**: Utilizes Mistral-7B to intelligently select relevant daylist content based on mood, archetype, and time of day.
 
 ---
 
@@ -118,7 +118,7 @@ The Adaptive Daylist system is Flux's time-aware recommendation engine that adap
 ├── WebRTC: Real-time video synchronization and low-latency streaming
 ├── Socket.io: Instant messaging and event broadcasting
 ├── Express.js: Backend signaling and room management
-├── MongoDB: Session and user data storage
+└── Local JSON: Session and user data storage
 ```
 
 ### Key Features
@@ -139,7 +139,6 @@ The Adaptive Daylist system is Flux's time-aware recommendation engine that adap
       <td align="center"><img src="https://cdn.simpleicons.org/scikitlearn" width="60px"/><br/>scikit-learn</td>
       <td align="center"><img src="https://cdn.simpleicons.org/fastapi" width="60px"/><br/>FastAPI</td>
       <td align="center"><img src="https://cdn.simpleicons.org/nodedotjs" width="60px"/><br/>Node.js</td>
-      <td align="center"><img src="https://cdn.simpleicons.org/mongodb" width="60px"/><br/>MongoDB</td>
       <td align="center"><img src="https://cdn.simpleicons.org/openai" width="60px"/><br/>OpenRouter</td>
       <td align="center"><img src="https://cdn.simpleicons.org/python" width="60px"/><br/>Python</td>
     </tr>
@@ -158,8 +157,7 @@ The Adaptive Daylist system is Flux's time-aware recommendation engine that adap
 
 ### Data & Storage Layer
 ```
-├── MongoDB (Replica Set): High availability document storage
-├── Time-series Collections: Engagement metrics and behavior patterns
+├── Local JSON: Character archetype metadata and user preferences
 ├── GridFS: Binary file storage for media files and thumbnails
 └── AES-256 Encryption: Data protection at rest and in transit
 ```
@@ -203,8 +201,8 @@ The Adaptive Daylist system is Flux's time-aware recommendation engine that adap
     │               │                                         │
     │               │  ┌─────────────┐  ┌─────────────────┐   │
     │               │  │ OpenRouter  │  │   scikit-learn  │   │
-    │               │  │ DeepSeek V3 │  │   Time-Series   │   │
-    │               │  │ LLM Service │  │   ML Models     │   │
+    │               │  │ DeepSeek V3 │  │    ML Models    │   │
+    │               │  │ LLM Service │  │                 │   │
     │               │  └─────────────┘  └─────────────────┘   │
     │               │                                         │
     │               │  ┌─────────────┐  ┌─────────────────┐   │
@@ -218,9 +216,9 @@ The Adaptive Daylist system is Flux's time-aware recommendation engine that adap
     │               │        Data & Storage Layer             │
     │               │                                         │
     │               │  ┌─────────────┐  ┌─────────────────┐   │
-    │               │  │  MongoDB    │  │   GridFS        │   │
-    │               │  │ Time-Series │  │  File Storage   │   │
-    │               │  │ Collections │  │    System       │   │
+    │               │  │ Local JSON  │  │   GridFS        │   │
+    │               │  │ File System │  │  File Storage   │   │
+    │               │  │  Storage    │  │    System       │   │
     │               │  └─────────────┘  └─────────────────┘   │
     │               └─────────────────────────────────────────┘
     │
@@ -278,11 +276,47 @@ def generate_archetype_name(keywords, sample_characters):
     return archetype_data
 ```
 
+### Mistral-7B Daylist Integration
+```python
+# FastAPI endpoint for Mistral-7B daylist recommendations
+@app.post("/api/v1/daylist/mistral/recommendations")
+async def mistral_daylist_recommendations(request: DaylistRequest):
+    prompt = f"""
+    Generate content recommendations based on:
+    - User Archetype: {request.archetype}
+    - Current Mood: {request.mood}
+    - Time of Day: {request.time_of_day}
+    
+    Select 3-5 pieces of content that match these criteria.
+    """
+    
+    headers = {
+        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+        "Content-Type": "application/json"
+    }
+    
+    payload = {
+        "model": "mistralai/mistral-7b-instruct",
+        "messages": [
+            {"role": "user", "content": prompt}
+        ]
+    }
+    
+    response = await openrouter_client.post(
+        "https://openrouter.ai/api/v1/chat/completions",
+        headers=headers,
+        json=payload
+    )
+    
+    return response.json()
+```
+
 ### Key Features
 - **Model**: DeepSeek V3 0324 for character archetype naming
+- **Model**: Mistral-7B for intelligent daylist content selection
 - **API**: OpenRouter for scalable LLM inference
 - **Integration**: FastAPI endpoints for real-time processing
-- **Caching**: In-memory caching for frequently accessed recommendations
+- **Voice**: Hume AI for empathic voice mood detection
 
 ---
 
@@ -298,8 +332,8 @@ def generate_archetype_name(keywords, sample_characters):
       </td>
       <td align="center">
         <h3>📊</h3>
-        <b>Time-Series Analysis</b><br>
-        <small>scikit-learn + Pandas</small>
+        <b>Content Analysis</b><br>
+        <small>Mistral-7B + Simple Functions</small>
       </td>
       <td align="center">
         <h3>🗣️</h3>
@@ -309,7 +343,7 @@ def generate_archetype_name(keywords, sample_characters):
       <td align="center">
         <h3>🔄</h3>
         <b>Multi-Modal Fusion</b><br>
-        <small>FastAPI + ML pipelines</small>
+        <small>FastAPI + LLM pipelines</small>
       </td>
     </tr>
   </table>
@@ -325,7 +359,6 @@ def generate_archetype_name(keywords, sample_characters):
 Node.js 18+
 Python 3.9+
 Docker & Docker Compose
-MongoDB 6.0+
 FastAPI 0.100+
 ```
 
@@ -372,7 +405,7 @@ PUT /api/v1/archetypes/preferences/{user_id}
 GET /api/v1/daylist/{user_id}/current
 POST /api/v1/daylist/mood-update
 GET /api/v1/daylist/recommendations/time-based
-PUT /api/v1/daylist/preferences/circadian
+POST /api/v1/daylist/mistral/recommendations
 GET /api/v1/daylist/openrouter/analyze
 POST /api/v1/daylist/voice/analyze
 ```
@@ -406,7 +439,7 @@ PUT /api/v1/ml/models/update
 
 <div align="center">
   <h2><b>Flux</b></h2>
-  <h3><i>Made for you, by you.</i> | Built by <a href="#" target="_blank">Team Espanys</a></h3>
+  <h3><i>Content that adapts to who you are, not just what you watch</i> | Built by <a href="#" target="_blank">Team Espanys</a></h3>
   
   <p>
     <img src="https://img.shields.io/badge/Made_with-❤️-red?style=for-the-badge" alt="Made with Love"/>
