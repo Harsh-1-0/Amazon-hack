@@ -113,38 +113,6 @@ This system discovers and names **character archetypes** across different media 
 - **Narrative Analysis**: Processes content for moral complexity, empathy levels, and character arcs
 - **Psychological Matching**: Delivers precise recommendations like "Morally complex protagonists in tough moral dilemmas" instead of generic genres
 
-### LLM Integration
-
-```python
-# OpenRouter DeepSeek V3 integration for archetype naming
-def generate_archetype_name(keywords, sample_characters):
-    prompt = f"""
-    You are naming character archetypes based on analysis of similar characters.
-    
-    KEYWORDS: {', '.join(keywords)}
-    SAMPLE CHARACTERS: {', '.join(sample_characters)}
-    
-    Based on these keywords and sample characters, generate:
-    1. A concise, evocative archetype name (1-3 words)
-    2. A single-sentence description of this archetype
-    
-    Format your response as strict JSON:
-    {{
-      "archetype_name": "Name Here",
-      "description": "Description here."
-    }}
-    """
-    
-    response = openai_client.chat.completions.create(
-        model="deepseek/deepseek-chat",
-        messages=[{"role": "user", "content": prompt}],
-        max_tokens=150,
-        temperature=0.7
-    )
-    
-    return json.loads(response.choices[0].message.content)
-```
-
 ---
 
 ## ⏱️ Adaptive Daylist Technology
