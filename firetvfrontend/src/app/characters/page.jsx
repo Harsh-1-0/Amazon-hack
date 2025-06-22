@@ -1,13 +1,16 @@
 "use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useRouter } from 'next/navigation'; 
 
 export default function Characters() {
+    const router = useRouter();
     const [allCharacters, setAllCharacters] = useState({});
     const [selectedMovie, setSelectedMovie] = useState("");
     const [search, setSearch] = useState("");
     const [selectedCharacters, setSelectedCharacters] = useState([]);
-
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    
     useEffect(() => {
         const getAllCharacters = async () => {
             try {
@@ -49,55 +52,87 @@ export default function Characters() {
     };
 
     const handleCharacters = async () => {
-        try {
+        // Prevent submission if no characters are selected or if a submission is already in progress
+        if (selectedCharacters.length === 0 || isSubmitting) {
             if (selectedCharacters.length === 0) {
-                console.log("No characters selected.");
                 alert("Please select at least one character before submitting.");
-                return;
             }
-            const backendUrl = process.env.NEXT_PUBLIC_ARCHTYPE_API;
-            console.log("Submitting characters:", selectedCharacters);
-            const arr = selectedCharacters.map(char => char.character_name);
-            const media_sources = selectedCharacters.map(char => char.media_type);
-            const genre = selectedCharacters.map(char => char.genre);
-            const response = await axios.post(`${backendUrl}/user/archetype`, {
-                character_names: arr,
+            return;
+        }
 
-            })
-            console.log(response.data);
-            const today = new Date();
-            const formatted = `${String(today.getDate()).padStart(2, '0')}-${String(today.getMonth() + 1).padStart(2, '0')}-${today.getFullYear()}`;
-            console.log(formatted);
-            const archetype = {
-                id:response.data.dominant_archetype_cluster, 
-                name: response.data.archetype_name,
-                description: response.data.description,
-                date: formatted,
+        // 1. Set the loading state to true to disable the button and show a loading indicator
+        setIsSubmitting(true);
+
+        try {
+            // Prepare the data for the first API call
+            const backendUrl = process.env.NEXT_PUBLIC_ARCHTYPE_API;
+            const characterNames = selectedCharacters.map(char => char.character_name);
+
+            console.log("Submitting characters:", characterNames);
+
+            // --- First API Call: Get the user's archetype ---
+            const archetypeResponse = await axios.post(`${backendUrl}/user/archetype`, {
+                character_names: characterNames,
+            });
+
+            console.log("Archetype response received:", archetypeResponse.data);
+            const { archetype_name, description, dominant_archetype_cluster } = archetypeResponse.data;
+
+            // Safety check: ensure the archetype name exists before proceeding
+            if (!archetype_name) {
+                throw new Error("Archetype name was not returned from the API.");
             }
+
+            // --- Second API Call: Update the user's profile with the new data ---
+            const today = new Date();
+            const formattedDate = `${String(today.getDate()).padStart(2, '0')}-${String(today.getMonth() + 1).padStart(2, '0')}-${today.getFullYear()}`;
+            
+            const archetypeData = {
+                id: dominant_archetype_cluster,
+                name: archetype_name,
+                description: description,
+                date: formattedDate,
+            };
+
+            const media_sources = selectedCharacters.map(char => char.media_type);
+            const genres = selectedCharacters.map(char => char.genre);
             const token = localStorage.getItem("jwt_token");
-            const userResponse = await axios.post(`${process.env.NEXT_PUBLIC_CHAT_SERVER}/user/updateDetails_newUser`, {
-                character_names: arr,
-                archetypes : archetype,
+
+            const userUpdateResponse = await axios.post(`${process.env.NEXT_PUBLIC_CHAT_SERVER}/user/updateDetails_newUser`, {
+                character_names: characterNames,
+                archetypes: archetypeData,
                 media_sources: media_sources,
-                genres: genre
+                genres: genres
             }, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": "application/json",
                 },
             });
-            if (userResponse.status === 200) {
-                console.log("User details updated successfully:", userResponse.data);
-                
-                setSelectedCharacters([]); // Clear selected characters after submission
+
+            if (userUpdateResponse.status === 200) {
+                console.log("User details updated successfully:", userUpdateResponse.data);
+
+                // 2. SUCCESS: Redirect to the archetype animation page.
+                // We use encodeURIComponent to handle archetype names with spaces or special characters (e.g., "The Creator" becomes "The%20Creator").
+                router.push(`/archetype?name=${encodeURIComponent(archetype_name)}`);
+
             } else {
-                console.error("Error updating user details:", userResponse.data);
-                alert("Failed to update user details. Please try again.");
+                // Handle cases where the second API call fails
+                console.error("Error updating user details:", userUpdateResponse.data);
+                throw new Error("Failed to update user details. Please try again.");
             }
+
         } catch (error) {
-            console.log("Error submitting characters:", error);
+            // 3. ERROR: Catch any errors from the API calls or logic.
+            // Alert the user and reset the loading state so they can try again.
+            console.error("Error in handleCharacters function:", error);
+            alert("An error occurred while determining your archetype. Please try again.");
+            setIsSubmitting(false);
         }
-    }
+        // Note: We do not set isSubmitting to false in the success path,
+        // because the user will be navigated away from the page.
+    };
     return (
 
         <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
@@ -220,10 +255,13 @@ export default function Characters() {
                 <div className="text-center">
                     <button
                         onClick={handleCharacters}
-                        disabled={selectedCharacters.length === 0}
+                        disabled={selectedCharacters.length === 0 || isSubmitting}
                         className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 disabled:from-slate-600 disabled:to-slate-600 text-white font-bold py-4 px-12 rounded-2xl text-lg transition-all duration-200 disabled:cursor-not-allowed shadow-2xl hover:shadow-cyan-500/25 disabled:shadow-none transform hover:scale-105 disabled:transform-none"
                     >
-                        {selectedCharacters.length === 0 ? 'Select Characters First' : 'Submit Selected Characters'}
+                        {isSubmitting 
+                            ? 'Calculating...' 
+                            : (selectedCharacters.length === 0 ? 'Select Characters First' : 'Submit Selected Characters')
+                        }
                     </button>
                 </div>
             </div>
