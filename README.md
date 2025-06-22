@@ -51,7 +51,6 @@
 ## 🧠 Character Archetype Engine
 
 The Character Archetype Engine is the psychological core of Flux, analyzing content and user preferences through the lens of character archetypes and narrative structures.
-<img src="./assets/archetypes.png" alt="Team Espanys" width="80%"/>
 
 ### Technical Implementation
 
@@ -65,9 +64,9 @@ The Character Archetype Engine is the psychological core of Flux, analyzing cont
 
 ### Key Features
 
-- **Archetype Classification**: Identifies content based on character types like Hero, Mentor, Trickster, and Anti-hero
+- **Archetype Classification**: Identifies content based on propietary archetypes i.e:- Rebel Heartthrob, The Hidden Prodigies, Dark Mentor, Star Presenter, Firebrand Strategist.
 - **Narrative Analysis**: Processes content for moral complexity, empathy levels, and character arcs
-- **Psychological Matching**: Delivers precise recommendations like "Morally complex protagonists in tough moral dilemmas" instead of generic genres
+- **Psychological Matching**: Delivers precise recommendations like "Morally complex protagonists in tough moral dilemmas" instead of generic genres.
 - **Personality Profiles**: Creates viewer profiles based on preferred character types and story themes
 - **Custom Transformer Models**: Uses 256-dimensional embeddings for rich character representation
 
