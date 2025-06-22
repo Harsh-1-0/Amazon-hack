@@ -358,31 +358,52 @@ async def mistral_daylist_recommendations(request: DaylistRequest):
 # System Requirements
 Node.js 18+
 Python 3.9+
-Docker & Docker Compose
 FastAPI 0.100+
 ```
 
 ### Quick Start
 ```bash
 # Clone repository
-git clone https://github.com/team-espanys/flux.git
-cd flux
+git clone https://github.com/Harsh-1-0/Amazon-hack
+cd Amazon-hack
 
-# Install dependencies
-npm install
-cd ml-pipeline && pip install -r requirements.txt
+# Install dependencies for frontend
+cd firetvfrontend
+npm i 
 
 # Environment setup
-cp .env.example .env
-# Configure your environment variables including OPENROUTER_API_KEY and HUME_API_KEY
+cp .env
+# Configure your environment variables including NEXT_PUBLIC_CHAT_SERVER, NEXT_PUBLIC_FIREBASE_API_KEY, NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN, NEXT_PUBLIC_FIREBASE_PROJECT_ID, NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET, NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID, NEXT_PUBLIC_FIREBASE_APP_ID, NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID, NEXT_PUBLIC_HUME_API_KEY
 
-# Start development environment
-docker-compose up -d
+# NEXT_PUBLIC_ARCHTYPE_API="https://character-iwaf.onrender.com"
 npm run dev
 
-# Start FastAPI ML service
-cd ml-pipeline
-uvicorn main:app --reload --port 8000
+# Start Backednd on node express
+In AMAZON-HACK directory 
+cd node_backend
+
+#install dependencies
+npm i
+
+# Environment setup
+cp .env
+
+# Configure your environment variables including PORT, DATABASE_URL (mongoDB atlas cluster key) FIREBASE_SERVICE_ACCOUNT (firebase admin json), JWT_SECRET
+
+#SPOILER_API_URL="http://localhost:8800"
+
+npm run dev
+
+In AMAZON-HACK directory 
+cd spoiler-detection
+
+#create venv and activate 
+
+pip install -r requirements.txt
+
+# Environment setup
+# Configure your environment variables including GEMINI_API_KEY
+Python main.py
 
 # Access application
 open http://localhost:3000

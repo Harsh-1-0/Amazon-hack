@@ -11,6 +11,8 @@ import ott3 from "../images/ott/ott3.png"
 import ott4 from "../images/ott/ott4.png"
 import ott5 from "../images/ott/ott5.png"
 
+import mix from "../images/mix.png"
+
 export default function Otts() {
     const fluxImages = [flux0, flux1, flux2, flux3, flux4];
     
@@ -28,7 +30,11 @@ export default function Otts() {
         }else return fluxImages[3]; // Night
     }
     const handleClick = () => {
-        window.location.href = "/audio_mood";
+        window.location.href = "/flux";
+    }
+
+    const handleMix = () => {
+        window.location.href = "/mix";
     }
     return (
 
@@ -37,7 +43,9 @@ export default function Otts() {
             <button onClick={handleClick}  className={`p-3 shadow-md cursor-pointer  hover:scale-110 transition-transform duration-200`}>
                 <Image src={checkTimeFromImage()} alt="Flux"/>
             </button>
-            <button className="text-white w-32 h-16  cursor-pointer  hover:scale-110 transition-transform duration-200"> collaborative</button>
+            <button onClick={handleMix} className="text-white w-32 h-16  cursor-pointer  hover:scale-110 transition-transform duration-200"> 
+                <Image src={mix} alt="Mix" className="w-full h-full object-cover rounded-lg shadow-md" />
+            </button>
             <button>
                 <Image src={ott1} alt="OTT 1" className="w-16 h-16 cursor-pointer rounded-lg shadow-md hover:scale-110 transition-transform duration-200" />
             </button>
