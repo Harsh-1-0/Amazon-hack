@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@humeai/voice-react": "^0.1.22",
     "axios": "^1.10.0",
     "firebase": "^11.9.1",
     "lucide-react": "^0.518.0",

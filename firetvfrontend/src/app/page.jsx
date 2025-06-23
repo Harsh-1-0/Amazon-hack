@@ -34,9 +34,11 @@ export default function Home() {
       console.log("User signed in:", data);
       if(data.message === "Not a new user"){
         //
+        window.location.href = "/landing";
       }
       else{
         // 
+        window.location.href = "/charcters";
       }
     } catch (error) {
       alert("Google sign-in failed");
