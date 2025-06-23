@@ -348,7 +348,9 @@ npm i
 # Environment setup
 cp .env
 
-# Configure your environment variables including PORT, DATABASE_URL (mongoDB atlas cluster key) FIREBASE_SERVICE_ACCOUNT (firebase admin json), JWT_SECRET
+# Configure your environment variables including PORT,
+# DATABASE_URL (mongoDB atlas cluster key) 
+# FIREBASE_SERVICE_ACCOUNT (firebase admin json), JWT_SECRET
 
 #SPOILER_API_URL="http://localhost:8800"
 
@@ -375,6 +377,15 @@ open http://localhost:3000
 
 ```http
 https://character-iwaf.onrender.com/docs
+```
+
+```
+Node Express API
+POST  api_ul/user (verifies the google auth and returns jwt) //google token
+POST  api_url/user/updateDetails (updates user fav character) //jwt protected
+POST api_url/user/updateDetails_newUser (gets users 5 charcters and stores chacters and archtype details) //jwt protected
+GET api_url/user/search?username={username} (returns user details with username) //jwt protected
+GET api_url/user (gets jwt token and gets user from db) //jwt protected
 ```
 ---
 
