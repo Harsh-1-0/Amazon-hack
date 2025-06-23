@@ -373,51 +373,9 @@ open http://localhost:3000
 
 ## 📚 API Documentation
 
-### Character Archetype Engine
 ```http
-GET /api/v1/archetypes/analyze
-POST /api/v1/archetypes/feedback
-GET /api/v1/archetypes/recommendations/{user_id}
-PUT /api/v1/archetypes/preferences/{user_id}
+https://character-iwaf.onrender.com/docs
 ```
-
-### Adaptive Daylist (FastAPI)
-```http
-GET /api/v1/daylist/{user_id}/current
-POST /api/v1/daylist/mood-update
-GET /api/v1/daylist/recommendations/time-based
-POST /api/v1/daylist/mistral/recommendations
-GET /api/v1/daylist/openrouter/analyze
-POST /api/v1/daylist/voice/analyze
-```
-
-### Mix Dual-User Recommendations
-```http
-POST /api/v1/mix/recommendations
-GET /api/v1/mix/compatibility/{user1_id}/{user2_id}
-POST /api/v1/mix/feedback
-GET /api/v1/mix/history/{session_id}
-PUT /api/v1/mix/preferences/{session_id}
-```
-
-### Native Watch Party
-```http
-POST /api/v1/watchparty/create
-GET /api/v1/watchparty/join/{room_id}
-POST /api/v1/watchparty/control/{room_id}
-GET /api/v1/watchparty/status/{room_id}
-DELETE /api/v1/watchparty/leave/{room_id}
-```
-
-### ML Model Endpoints
-```http
-POST /api/v1/ml/inference/archetype
-POST /api/v1/ml/inference/recommendation
-POST /api/v1/ml/inference/mix
-GET /api/v1/ml/models/status
-PUT /api/v1/ml/models/update
-```
-
 ---
 
 ## 👥 Meet Team Espanys
