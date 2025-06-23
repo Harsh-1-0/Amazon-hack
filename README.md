@@ -309,33 +309,23 @@ open http://localhost:3000
 
 ---
 
-## 📚 API Documentation
+### Character Archetype API
 
-### Character Archetype Engine
 ```http
-GET /api/v1/archetypes/analyze
-POST /api/v1/archetypes/feedback
-GET /api/v1/archetypes/recommendations/{user_id}
-PUT /api/v1/archetypes/preferences/{user_id}
+GET    /                             # Root
+POST   /characters/full_info         # Get Full Character Info
+GET    /characters                   # Get Characters
+GET    /characters/names             # Get Character Names
+GET    /clusters/stats               # Get Cluster Stats
+GET    /clusters/archetypes          # Get All Archetypes
+POST   /user/archetype               # Get User Archetype
+GET    /blend/{user_a}/{user_b}      # Blend Users
+GET    /media/characters_grouped     # Get Characters Grouped By Media Type
+GET    /media/available              # Get Available Media
+GET    /user/{user_id}               # Get User Info
+POST   /daylist                      # Generate Daylist
 ```
 
-### Adaptive Daylist
-```http
-GET /api/v1/daylist/{user_id}/current
-POST /api/v1/daylist/mood-update
-GET /api/v1/daylist/recommendations/time-based
-PUT /api/v1/daylist/preferences/mood
-GET /api/v1/daylist/openrouter/analyze
-POST /api/v1/daylist/voice/analyze
-```
-
-### Watch Party
-```http
-POST /api/v1/watchparty/create
-GET /api/v1/watchparty/join/{room_id}
-POST /api/v1/watchparty/control/{room_id}
-GET /api/v1/watchparty/status/{room_id}
-```
 
 ---
 
