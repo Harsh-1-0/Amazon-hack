@@ -373,13 +373,27 @@ open http://localhost:3000
 
 ---
 
-## 📚 API Documentation
+### Character Archetype API
+
 
 ```http
-https://character-iwaf.onrender.com/docs
+GET    /                             # Root
+POST   /characters/full_info         # Get Full Character Info
+GET    /characters                   # Get Characters
+GET    /characters/names             # Get Character Names
+GET    /clusters/stats               # Get Cluster Stats
+GET    /clusters/archetypes          # Get All Archetypes
+POST   /user/archetype               # Get User Archetype
+GET    /blend/{user_a}/{user_b}      # Blend Users
+GET    /media/characters_grouped     # Get Characters Grouped By Media Type
+GET    /media/available              # Get Available Media
+GET    /user/{user_id}               # Get User Info
+POST   /daylist                      # Generate Daylist
 ```
 
-```
+
+```http
+
 Node Express API
 POST  api_ul/user (verifies the google auth and returns jwt) //google token
 POST  api_url/user/updateDetails (updates user fav character) //jwt protected
