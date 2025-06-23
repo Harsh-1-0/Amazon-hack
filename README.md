@@ -390,18 +390,157 @@ GET    /media/available              # Get Available Media
 GET    /user/{user_id}               # Get User Info
 POST   /daylist                      # Generate Daylist
 ```
-
-
-```http
-
-Node Express API
-POST  api_ul/user (verifies the google auth and returns jwt) //google token
-POST  api_url/user/updateDetails (updates user fav character) //jwt protected
-POST api_url/user/updateDetails_newUser (gets users 5 charcters and stores chacters and archtype details) //jwt protected
-GET api_url/user/search?username={username} (returns user details with username) //jwt protected
-GET api_url/user (gets jwt token and gets user from db) //jwt protected
-```
 ---
+
+## 📘 Node Express API — User Routes
+
+### POST `/api_url/user`
+
+**Description:**
+Verifies Google authentication token and returns a signed JWT for the user.
+
+**Request Body:**
+
+```json
+{
+  "token": "google_auth_token"
+}
+```
+
+**Response:**
+Returns a JWT token on successful verification.
+
+---
+
+### POST `/api_url/user/updateDetails`
+
+**Authentication:** JWT Protected
+**Description:**
+Updates the user's favorite characters.
+
+**Headers:**
+
+```
+Authorization: Bearer <JWT_TOKEN>
+```
+
+**Request Body:**
+
+```json
+{
+  "character_names": ["Naruto", "Luffy", "Goku"],
+  "archetypes": ["Hero", "Adventurer"],
+  "media_sources": ["Anime", "Manga"],
+  "genres": ["Action", "Fantasy"]
+}
+```
+
+**Response:**
+
+```json
+{
+  "message": "User details updated successfully",
+  "user": { ...updated user object... }
+}
+```
+
+---
+
+### POST `/api_url/user/updateDetails_newUser`
+
+**Authentication:** JWT Protected
+**Description:**
+Stores the first 5 characters and related archetype, media source, and genre data for a new user.
+
+**Headers:**
+
+```
+Authorization: Bearer <JWT_TOKEN>
+```
+
+**Request Body:**
+
+```json
+{
+  "character_names": ["Character1", "Character2", "Character3", "Character4", "Character5"],
+  "archType": ["Leader", "Loner"],
+  "media_sources": ["Game", "Show"],
+  "genre": ["Sci-Fi", "Adventure"]
+}
+```
+
+**Response:**
+
+```json
+{
+  "message": "New user details stored successfully",
+  "user": { ...new user object... }
+}
+```
+
+---
+
+### GET `/api_url/user/search?username={username}`
+
+**Authentication:** JWT Protected
+**Description:**
+Searches for and returns user details based on the provided username.
+
+**Headers:**
+
+```
+Authorization: Bearer <JWT_TOKEN>
+```
+
+**Query Parameters:**
+
+* `username`: *string* — The username to search for
+
+**Response:**
+
+```json
+{
+  "user": {
+    "username": "exampleUser",
+    "favCharacters": [...],
+    "archType": [...],
+    "media_sources": [...],
+    "genres": [...]
+  }
+}
+```
+
+---
+
+### GET `/api_url/user`
+
+**Authentication:** JWT Protected
+**Description:**
+Retrieves the authenticated user's full data from the database using the JWT token.
+
+**Headers:**
+
+```
+Authorization: Bearer <JWT_TOKEN>
+```
+
+**Response:**
+
+```json
+{
+  "user": {
+    "uid": "user_uid",
+    "username": "exampleUser",
+    "favCharacters": [...],
+    "archType": [...],
+    "media_sources": [...],
+    "genres": [...]
+  }
+}
+```
+
+---
+
 
 ## 👥 Meet Team Espanys
 
