@@ -41,10 +41,15 @@ export default function Otts() {
         <div className="flex items-center justify-center gap-5">
             
             <button onClick={handleClick}  className={`p-3 shadow-md cursor-pointer  hover:scale-110 transition-transform duration-200`}>
-                <Image src={checkTimeFromImage()} alt="Flux"/>
+                {checkTimeFromImage() &&
+                    <Image src={checkTimeFromImage()} alt="Flux"/>
+                }
+                
             </button>
             <button onClick={handleMix} className="text-white w-32 h-16  cursor-pointer  hover:scale-110 transition-transform duration-200"> 
-                <Image src={mix} alt="Mix" className="w-full h-full object-cover rounded-lg shadow-md" />
+                {mix && (
+                    <Image src={mix} alt="Mix" className="w-full h-full object-cover rounded-lg shadow-md" />
+                )}
             </button>
             <button>
                 <Image src={ott1} alt="OTT 1" className="w-16 h-16 cursor-pointer rounded-lg shadow-md hover:scale-110 transition-transform duration-200" />

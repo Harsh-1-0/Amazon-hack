@@ -23,7 +23,7 @@ export default function FluxPage() {
   const [uiStatus, setUiStatus] = useState("Ready");
   const [dayList, setDayList] = useState(null);
   const [error, setError] = useState(null);
-
+  const [mood, setMood] = useState(null);
   useEffect(() => {
     const hour = new Date().getHours();
     if (hour >= 4 && hour < 12) setMessage("Good Morning!");
@@ -104,6 +104,8 @@ export default function FluxPage() {
         { emotion: "neutral", score: 0 }
       );
       console.log(" Detected emotion:", topEmotion.emotion);
+      setMood(topEmotion.emotion);
+      
       disconnect();
       fetchDaylist(userId, topEmotion.emotion);
     }
@@ -157,8 +159,8 @@ export default function FluxPage() {
             >
               {status.value === "disconnected" ? "🎙 Start My Daylist" : "Listening..."}
             </button>
-            <p className="text-slate-500 text-sm mt-4 min-h-[20px]">
-              {status.value !== "disconnected" ? uiStatus : `Status: ${status.value}`}
+            <p className="text-blue-500 text-md mt-4 min-h-[20px]">
+              {mood ? `Detected mood: ${mood}` : "Waiting for your voice input..."}
             </p>
           </div>
 

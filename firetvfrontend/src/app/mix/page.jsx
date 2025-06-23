@@ -41,6 +41,7 @@ export default function UserSearch() {
                 },
             });
             setUser(response.data);
+            console.log("User Response:", result.picture);
             const blendUrl = process.env.NEXT_PUBLIC_ARCHTYPE_API;
             const blendResponse = await axios.get(`${blendUrl}/blend/${response.data.user_id}/${result.user_id}`)
             setBlendResult(blendResponse.data);
